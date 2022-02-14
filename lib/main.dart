@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes/recipe.dart';
+import 'package:recipes/recipe_detail.dart';
 
 void main() {
   runApp(const RecipesApp());
@@ -25,17 +26,17 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
 
-  List<Recipe> recipes = [
-    Recipe('recipe number1','assets/iu.jpeg'),
-    Recipe('recipe number2','assets/iu.jpeg'),
-    Recipe('recipe number3','assets/iu.jpeg'),
-    Recipe('recipe number4','assets/iu.jpeg'),
-    Recipe('recipe number5','assets/iu.jpeg'),
-    Recipe('recipe number6','assets/iu.jpeg'),
-    Recipe('recipe number7','assets/iu.jpeg'),
-    Recipe('recipe number8','assets/iu.jpeg'),
-    Recipe('recipe number9','assets/iu.jpeg'),
-  ];
+  // List<Recipe> recipes = [
+  //   Recipe('recipe number1','assets/iu.jpeg'),
+  //   Recipe('recipe number2','assets/iu.jpeg'),
+  //   Recipe('recipe number3','assets/iu.jpeg'),
+  //   Recipe('recipe number4','assets/iu.jpeg'),
+  //   Recipe('recipe number5','assets/iu.jpeg'),
+  //   Recipe('recipe number6','assets/iu.jpeg'),
+  //   Recipe('recipe number7','assets/iu.jpeg'),
+  //   Recipe('recipe number8','assets/iu.jpeg'),
+  //   Recipe('recipe number9','assets/iu.jpeg'),
+  // ];
 
 
   @override
@@ -48,7 +49,8 @@ class MyHomePage extends StatelessWidget {
           itemBuilder:(context,index){
             return GestureDetector(onTap:(){
               Navigator.of(context).push(MaterialPageRoute(builder:(context){
-                return Text('Detail Page');
+
+                return RecipeDetail(recipe:recipes[index]);
               }));
             } ,child:buildRecipeCard(recipes[index]));
       },itemCount:recipes.length)
@@ -63,10 +65,10 @@ class MyHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Image.asset(recipe.imageUrl!),
+            Image.asset(recipe.imageUrl),
             const SizedBox(height:12),
             Text(
-                recipe.label!,
+                recipe.label,
                 style:const TextStyle(
                   fontSize:20.0,
                   fontWeight: FontWeight.w700,
